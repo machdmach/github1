@@ -1,0 +1,71 @@
+http://msysgit.github.io/
+TurtoiseGit
+
+https://www.youtube.com/watch?v=4XpnKHJAok8
+
+https://www.atlassian.com/git/tutorials/saving-changes/git-add
+
+>git init --bare (not create .git dir)
+>git init [dir1] (create .git dir)  
+>git clone --bare --progress -v "c:\dir1" "c:\git_main_repos\dir1.git"
+>git clone --progress "c:\git_main_repos\dir1"   "c:\dir2"
+>git  push -all --progress "origin"
+
+e.g: bare repo    project1.git
+
+>git add file1 | dir1   (diff from svn,   add=add changes, not file)
+
+push and pull between repos
+
+make changes to 10 files:  group 3 files by add  and commit (snapshot1),  then the other 7 files in another commit (snapshot2).  (staging == buffer for commit)
+
+>git add .  (current dir)  (add to snapshot)
+>git commit   (commit the staged snapshot to local repo)
+== svn import
+
+publish to central repo.
+svn tracks differences of a file
+git tracks diff of a snapshot (entire contents of all the added files)
+
+>git pull (== git fetch + git merge)
+>push origin branch1:branch1  (push origin branch and branch1 to branch1)
+>push origin :branch1 (== nothing to branch1 which effectively same as  --delete branch1)
+
+collabrator1:
+>git checkout master  (switch to master branch)
+>git fetch
+>git merge origin/master
+>git checkout -b branch2  (create branch2 and switch to it)
+make changes
+>git add file1.txt
+>git commit -m "mesg1"  (commit to branch2)
+>git fetch 
+>git push -u (upstream)  origin branch2  (upstream for tracking)
+
+collabrator2:
+>git checkout master
+>git fetch
+>git merge origin/mater
+>git checkout -b branch2 origin/branch2
+>git log
+make changes
+>git commit -am "mesg1"
+>git fetch
+>git push
+
+collabrator1:
+>git fetch
+>git log -p (patches) branch2..origin/branch2
+>git merge origin/branch2  (merge to local, fastforward merge)0
+>git checkout master  (switch to master branch)
+>git fetch 
+>git merge origin/master  (to master)
+>git merge branch2 (to master)
+>git push 
+
+>git config --global alias.co checkout
+>git config --global alias.ci commit (br = branch)
+>git config --global alias.dfs "diff --staged"
+
+
+
